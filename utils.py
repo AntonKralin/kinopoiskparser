@@ -1,6 +1,6 @@
 import requests
 import json
-from models import Movie, SeasonsInfo
+from models import Movie, SeasonsInfo, Rewiew
 
 class APIRequest:
     LINK = "https://api.kinopoisk.dev/v1/"
@@ -41,14 +41,29 @@ class APIRequest:
     def get_sesson(self, id_movie:int=None) -> SeasonsInfo:
         param = {}
         if id:
-            param = {"movieId": id_movie}
+            param['movieId'] = id_movie
         response = requests.request('GET', self.SEASON, headers=self._headers, params=param)
         if response.status_code == requests.codes.OK:
             api_json = json.loads(response.text)
             docs = api_json.get('docs', [])
             if len(docs) > 0:
-                season = SeasonsInfo(docs[0])
+                season = SeasonsInfo(**docs[0])
                 print(season)
                 return season
             
+        return None
+    
+    def get_review(self, id_movie:int=None):
+        param = {}
+        if id_movie:
+            param['movieId'] = id_movie
+            
+        response = requests.request('GET', self.REVIEW, headers=self._headers, params=param)
+        if response.status_code == requests.codes.OK:
+            api_json = json.loads(response.text)
+            docs = api_json.get('docs', [])
+            if len(docs) > 0:
+                rewiew = [Rewiew(**r) for r in docs]
+                for i in rewiew:
+                    print(i)
         return None

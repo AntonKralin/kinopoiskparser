@@ -7,6 +7,7 @@ def main():
     #api.get_random()
     #api.get_movie(891645)
     api.get_sesson(891645)
+    #api.get_review(891645)
     
     
 if __name__ == '__main__':

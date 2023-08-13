@@ -44,3 +44,14 @@ class Episod(object):
         
     def __str__(self):
         return ";".join([str(self.number), self.name])
+    
+
+class Rewiew(object):
+    def __init__(self, id='', movieId='', title='', type='', rewiew='',
+                 date='', author='', authorId='', userRating='', **kwargs):
+        self.id, self.movieId, self.title = id, movieId, title
+        self.type, self.rewiew, self.date = type, rewiew, date
+        self.author, self.authorId, self.userRating = author, authorId, userRating
+        
+    def __str__(self):
+        return ';'.join([str(self.id), self.author, self.title])

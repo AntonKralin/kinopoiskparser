@@ -37,8 +37,9 @@ class Show:
     @staticmethod
     def print_season(season:SeasonsInfo):
         print('Сезон:', season.number)
-        episodes = '\n'.join(str(i) for i in season.episodes)
-        print(episodes)
+        if len(season.episodes) > 0:
+            episodes = '\n'.join(str(i) for i in season.episodes)
+            print(episodes)
         
     @staticmethod
     def show_review(reviews):

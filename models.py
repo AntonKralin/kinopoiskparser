@@ -43,7 +43,7 @@ class Episod(object):
         self.description = description
         
     def __str__(self):
-        return "-".join([str(self.number), self.name])
+        return "-".join([str(self.number), str(self.name)])
     
 
 class Review(object):

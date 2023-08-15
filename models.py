@@ -13,7 +13,7 @@ class Movie(object):
         
         self.isSeries = isSeries
         if isSeries:
-            self.seasonsInfo = seasonsInfo
+            self.seasonsInfo = [SeasonsInfo(**i) for i in seasonsInfo]
             
     
     def __str__(self):
@@ -25,16 +25,16 @@ class Actor(object):
         self.id, self.name, self.enName = id, name, enName
         
     def __str__(self):
-        return ';'.join([str(self.id), self.name])
+        return str(self.name)
     
 
 class SeasonsInfo(object):
     def __init__(self, movieId='', number='', episodes='', **kwargs):
         self.movie_id, self.number = movieId, number
-        self.episodes = [Episod(obj) for obj in episodes]
+        self.episodes = [Episod(**obj) for obj in episodes]
         
     def __str__(self):
-        return ";".join([str(self.movie_id), str(self.number)])
+        return str(self.number)
     
     
 class Episod(object):
@@ -43,14 +43,14 @@ class Episod(object):
         self.description = description
         
     def __str__(self):
-        return ";".join([str(self.number), self.name])
+        return "-".join([str(self.number), self.name])
     
 
-class Rewiew(object):
-    def __init__(self, id='', movieId='', title='', type='', rewiew='',
+class Review(object):
+    def __init__(self, id='', movieId='', title='', type='', review='',
                  date='', author='', authorId='', userRating='', **kwargs):
         self.id, self.movieId, self.title = id, movieId, title
-        self.type, self.rewiew, self.date = type, rewiew, date
+        self.type, self.review, self.date = type, review, date
         self.author, self.authorId, self.userRating = author, authorId, userRating
         
     def __str__(self):

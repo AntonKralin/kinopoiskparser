@@ -1,6 +1,8 @@
 # kinopoiskparser
 
 #### Program for work with API kinopoisk
+
+You need API token. You can read instructions on how to get a token in the 
 [documentation](https://api.kinopoisk.dev/v1/documentation#/)
 
 Need: 

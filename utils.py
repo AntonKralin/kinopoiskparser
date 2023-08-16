@@ -18,7 +18,7 @@ class APIRequest:
             'X-API-KEY': key
         }
         
-    def get_random(self) -> Movie:
+    def get_random(self) -> Movie | None:
         response = requests.request('GET', self.RANDOM, headers=self._headers)
         if response.status_code == requests.codes.OK:
             api_json = json.loads(response.text)
@@ -26,7 +26,7 @@ class APIRequest:
             return movie
         return None
     
-    def get_movie(self, id:int=0) -> Movie:
+    def get_movie(self, id:int=0) -> Movie | None:
         response = requests.request('GET', self.MOVIE+str(id), headers=self._headers)
         if response.status_code == requests.codes.OK:
             api_json = json.loads(response.text)
@@ -34,7 +34,7 @@ class APIRequest:
             return movie
         return None
     
-    def get_sesson(self, id_movie:int=None) -> SeasonsInfo:
+    def get_sesson(self, id_movie:int=None) -> SeasonsInfo | None:
         param = {}
         if id:
             param['movieId'] = id_movie
@@ -44,11 +44,10 @@ class APIRequest:
             docs = api_json.get('docs', [])
             if len(docs) > 0:
                 seasons = [SeasonsInfo(**i) for i in docs]
-                return seasons
-            
+                return seasons          
         return None
     
-    def get_review(self, id_movie:int=None):
+    def get_review(self, id_movie:int=None) -> Review | None:
         param = {}
         if id_movie:
             param['movieId'] = id_movie

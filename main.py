@@ -1,9 +1,12 @@
 from utils import APIRequest
 from messages import Show
-from settings import token
+from settings import get_token
 
 
-def main():
+def main() -> None:
+    token = get_token()
+    if not token:
+        return
     api = APIRequest(token)
     while True:
         print('\nВыберите одно из возможных действий:')

@@ -1,1 +1,12 @@
-token = "D2JDPTT-4724H28-J0JFYCA-NM1SASA"
+from dotenv import dotenv_values
+from myexception import ValueNoException
+
+def get_token() -> str | None:
+    try:
+        env_dict = dotenv_values('.env')
+        if not env_dict.get('token'):
+            raise ValueNoException("token")
+        return env_dict.get('token')
+    except ValueNoException:
+        print('token not found')
+        return None

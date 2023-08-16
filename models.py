@@ -1,6 +1,3 @@
-import dataclasses
-
-
 class Movie(object):
     def __init__(self, name='', id='', rating='', description='', premiere='', isSeries='',
                  year='', slogan='', genres='', countries='', persons='',
@@ -8,7 +5,7 @@ class Movie(object):
         self.name, self.id, self.rating, self.description = name, id, rating, description
         self.premiere, self.year, self.slogan = premiere, year, slogan
         self.persons = [Actor(**obj) for obj in persons]
-        self.genres  = [name['name'] for name in genres]
+        self.genres = [name['name'] for name in genres]
         self.countries = [name['name'] for name in countries]
         
         self.isSeries = isSeries

@@ -1,8 +1,10 @@
+import re
 from models import Movie, SeasonsInfo, Review
+
 
 class Show:
     @staticmethod
-    def show_movie(movie:Movie):
+    def show_movie(movie:Movie) -> None:
         if movie:
             print('id:', movie.id)
             print('Название:', movie.name)
@@ -19,14 +21,14 @@ class Show:
                 print('Сезон:', season_info)
 
     @staticmethod
-    def show_seasons(seasons):
+    def show_seasons(seasons) -> None:
         if seasons:
             season = iter(seasons)
             Show._rec_season(season)
         
         
     @staticmethod
-    def _rec_season(iterable):
+    def _rec_season(iterable) -> None:
         try:
             season = next(iterable)
             Show.print_season(season)
@@ -35,20 +37,20 @@ class Show:
             return
             
     @staticmethod
-    def print_season(season:SeasonsInfo):
+    def print_season(season:SeasonsInfo) -> None:
         print('Сезон:', season.number)
         if len(season.episodes) > 0:
             episodes = '\n'.join(str(i) for i in season.episodes)
             print(episodes)
         
     @staticmethod
-    def show_review(reviews):
+    def show_review(reviews) -> None:
         if reviews:
             iterable = iter(reviews)
             Show._rec_review(iterable)
         
     @staticmethod
-    def _rec_review(iterable):
+    def _rec_review(iterable) -> None:
         try:
             review = next(iterable)
             Show.print_review(review)
@@ -57,10 +59,11 @@ class Show:
             return
         
     @staticmethod
-    def print_review(review:Review):
+    def print_review(review:Review) -> None:
         print('Автор:', review.author)
         print('Заголовок:', review.title)
         print('Дата:', review.date)
         print('Оценка:', review.type)
-        print('Текст:', review.review)
+        text = re.sub(r'<.*?>', '', review.review)
+        print('Текст:', text)
         print()

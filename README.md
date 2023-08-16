@@ -15,3 +15,6 @@ Need:
 for example:
 
 token=D2JDPTT-4724H28-J0JFYCA-NM1SASA
+
+
+To start application you need run main.py
